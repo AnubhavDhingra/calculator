@@ -43,14 +43,14 @@ class Calculator extends React.Component {
         let inputValues = this.state.calculationInputs;
         inputValues.push(this.state.calculationResult);
         let result;
-        console.log(this.state.calculationInputs);
+        // console.log(this.state.calculationInputs);
         if (clickedButton === '=') {
             result = eval(this.state.calculationInputs.join(' '));
             this.setState({ calculationResult: result.toString(), calculationInputs: [] });
             return;
         }
         if (inputValues.length > 1) {
-            console.log(this.state.calculationInputs, 'after equal');
+            // console.log(this.state.calculationInputs, 'after equal');
             result = eval(this.state.calculationInputs.join(' '));
             inputValues = [result.toString()];
             this.setState({ calculationResult: result.toString() });
