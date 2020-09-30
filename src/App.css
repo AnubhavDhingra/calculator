@@ -1,0 +1,62 @@
+.light {
+  text-align: center;
+  background-color: #ffffff;
+  color: #000;
+}
+.light button {
+  background-color: #f0f0f0;
+}
+
+.dark {
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+}
+
+.dark button {
+  background-color: #666;
+  color: white;
+}
+.app {
+  width: 100%;
+  position: fixed;
+  height: 100%;
+}
+
+button {
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 20px auto;
+}
+.calculator-wrapper {
+  position: fixed;
+  margin: 0 auto;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 400px;
+}
+
+.scientific-buttons-wrapper {
+  display: inline-flex;
+}
+
+.calculator-buttons-flexitems {
+  justify-content: space-between;
+}
+
+.calculator-buttons-flexitems button {
+  width: 100px;
+}
+
+input {
+  width: 50%;
+  font-weight: bolder;
+  font-size: large;
+  height: 40px;
+}
