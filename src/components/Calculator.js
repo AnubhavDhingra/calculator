@@ -3,11 +3,11 @@ import Button from './Button';
 import Display from './Display';
 
 const buttonValues = [
-                      '1','2','3','Add (+)',
-                      '4','5','6','Subtract (-)',
-                      '7','8','9','Multiply (*)',
-                      'Clear','0','=','Divide (/)'
-                    ];
+    '1', '2', '3', 'Add (+)',
+    '4', '5', '6', 'Subtract (-)',
+    '7', '8', '9', 'Multiply (*)',
+    'Clear', '0', '=', 'Divide (/)'
+];
 
 
 class Calculator extends React.Component {
@@ -17,7 +17,8 @@ class Calculator extends React.Component {
         calculationInputs: [],
         stack: [],
         prevOperation: '',
-        scientificMode: false
+        scientificMode: false,
+        pressedKey: 0
     }
 
     // componentDidMount() {
@@ -91,7 +92,7 @@ class Calculator extends React.Component {
     }
 
     changeSign = () => {
-        if(this.state.prevOperation !== 'number') {
+        if (this.state.prevOperation !== 'number') {
             this.setState({
                 calculationResult: 'ENTER VALID NUMBER'
             });
@@ -104,7 +105,7 @@ class Calculator extends React.Component {
     }
 
     calculateRoot = () => {
-        if(this.state.prevOperation !== 'number') {
+        if (this.state.prevOperation !== 'number') {
             this.setState({
                 calculationResult: 'ENTER VALID NUMBER'
             });
@@ -116,7 +117,7 @@ class Calculator extends React.Component {
     }
 
     calculateSquare = () => {
-        if(this.state.prevOperation !== 'number') {
+        if (this.state.prevOperation !== 'number') {
             this.setState({
                 calculationResult: 'ENTER VALID NUMBER'
             });
@@ -129,9 +130,44 @@ class Calculator extends React.Component {
         }));
     }
 
+    onKeyPressHandler = (e) => {
+        console.log('1----keypressed',e.charCode);
+        if (e.charCode === 45 || e.charCode === 43) e.preventDefault();
+        
+        switch (e.charCode) {
+            case 42:
+                this.calculateResultValue('*')
+                break;
+            case 45:
+                this.calculateResultValue('-')
+                break;
+            case 43:
+                this.calculateResultValue('+')
+                break;
+            case 47:
+                this.calculateResultValue('/')
+                break;
+            case 61:
+                this.calculateResultValue('=')
+                break;
+            default:
+                break;
+        }
+        
+        this.setState({
+            pressedKey: e.key
+        });
+    }
+
+    handleInputChange = () => {
+        console.log('2----change');
+        // console.log('charCode->',e.charCode,'shift', e.shiftKey,'key -> ',e.key,'keyCode',e.keyCode);
+        this.registerInputNumber(this.state.pressedKey);        
+    }
+
     render() {
 
-        let buttonConfig = buttonValues.map((el,i) => (
+        let buttonConfig = buttonValues.map((el, i) => (
             <Button buttonClicked={this.handleButtonClick} key={i} value={el}></Button>
         ))
 
@@ -150,7 +186,7 @@ class Calculator extends React.Component {
             <div>
                 <h1>Calculator </h1>
                 <br />
-                <Display result={this.state.calculationResult}></Display>
+                <Display result={this.state.calculationResult} keyPress={this.onKeyPressHandler} handleChange={this.handleInputChange}></Display>
                 <br />
                 <div className="button-wrapper">
                     {buttonConfig}

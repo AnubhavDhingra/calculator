@@ -3,7 +3,7 @@ import React from 'react';
 const display = (props) => {
     return (
         <div>
-            <input readOnly value={props.result || 0}/>
+            <input type="number" value={props.result} onKeyPress={props.keyPress} onChange={props.handleChange} onPaste={(e)=> e.preventDefault()}/>
         </div>
     )
 }

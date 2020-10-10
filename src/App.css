@@ -55,8 +55,14 @@ button {
 }
 
 input {
-  width: 50%;
+  width: 45%;
   font-weight: bolder;
   font-size: large;
   height: 40px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
